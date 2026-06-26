@@ -120,20 +120,6 @@ server  →  {"type": "result",   "data": { ...ScanResult... }}
 server  →  {"type": "done"}
 ```
 
-## Caddy Config
-
-Subdomain `threat.yohanesfc.web.id` dikonfigurasi di `~/n8n/Caddyfile`:
-
-```
-/ws/*     → 172.17.0.1:8090  (WebSocket, dengan Upgrade/Connection headers)
-/api/*    → 172.17.0.1:8090  (REST)
-/health   → 172.17.0.1:8090
-/metrics  → 172.17.0.1:8090
-default   → 172.17.0.1:3001  (Next.js frontend)
-```
-
-> **UFW wajib:** `ufw allow 3001/tcp && ufw allow 8090/tcp` — tanpa ini Caddy tidak bisa reach 172.17.0.1.
-
 ## Catatan Teknis
 
 ### AbuseIPDB — reporter IP tidak tersedia
