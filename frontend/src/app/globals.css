@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radar-bg: #040d1a;
+  --radar-panel: #071428;
+  --radar-border: #0d2545;
+  --radar-accent: #00d4ff;
+  --radar-danger: #ff2d55;
+  --radar-warn: #ff9500;
+  --radar-safe: #30d158;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--radar-bg);
+  color: #c9d8f0;
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* World map arc animations */
+.attack-arc {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: arc-flash 2s ease-out forwards;
+}
+
+@keyframes arc-flash {
+  0%   { opacity: 0; stroke-dashoffset: 1000; }
+  10%  { opacity: 0.9; }
+  80%  { opacity: 0.6; }
+  100% { opacity: 0; stroke-dashoffset: 0; }
+}
+
+.attack-dot {
+  animation: dot-pulse 2s ease-out forwards;
+}
+
+@keyframes dot-pulse {
+  0%   { r: 2; opacity: 1; }
+  100% { r: 8; opacity: 0; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--radar-panel); }
+::-webkit-scrollbar-thumb { background: var(--radar-border); border-radius: 2px; }

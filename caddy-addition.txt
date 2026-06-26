@@ -1,0 +1,35 @@
+# Tambahkan ke Caddyfile untuk subdomain standalone threat.yohanesfc.web.id
+
+threat.yohanesfc.web.id {
+    import block_scanners
+    import security_headers
+
+    # WebSocket scan — harus sebelum rule umum
+    handle /ws/* {
+        reverse_proxy 172.17.0.1:8090 {
+            header_up Host {host}
+            header_up Upgrade {http.request.header.Upgrade}
+            header_up Connection {http.request.header.Connection}
+        }
+    }
+
+    # REST API backend
+    handle /api/* {
+        reverse_proxy 172.17.0.1:8090 {
+            header_up Host {host}
+        }
+    }
+
+    handle /health {
+        reverse_proxy 172.17.0.1:8090
+    }
+
+    handle /metrics {
+        reverse_proxy 172.17.0.1:8090
+    }
+
+    # Frontend Next.js
+    handle {
+        reverse_proxy 172.17.0.1:3001
+    }
+}
