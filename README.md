@@ -84,7 +84,7 @@ CENSYS_API_TOKEN=    # search.censys.io → avatar → Personal Access Tokens
 
 ```bash
 # Pertama kali
-cd /home/ubuntu/threat-map
+cd /threat-map
 docker compose up -d --build
 
 # Update code (WAJIB --build, bukan hanya up -d)
